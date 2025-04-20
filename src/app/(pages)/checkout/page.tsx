@@ -6,7 +6,6 @@ import { Toaster, toast } from 'sonner';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import conpec from '@assets/conpeclogo.png';
-import { dividerClasses } from '@mui/material';
 
 
 interface Item {
@@ -22,15 +21,12 @@ export default function Checkout() {
 
     const router = useRouter();
 
-
-
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const fetchData = async () => {
                 try {
                     const itemsFromStorage = JSON.parse(localStorage.getItem('items') || '[]');
                     setItemsBought(itemsFromStorage);
-                    console.log(itemsFromStorage)
                     const sum = itemsFromStorage.reduce((accumulator: number, currentValue: Item) => accumulator + (currentValue.price * currentValue.quantity), 0)
                     setTotal(sum);
                     setIsLoading(false);
@@ -41,10 +37,8 @@ export default function Checkout() {
             };
             fetchData();
         }
-        console.log(itemsBought);
 
-    }, []);
-
+    }, [itemsBought]);
 
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text).then(() => {
@@ -93,7 +87,7 @@ export default function Checkout() {
 
                             <div className='flex flex-row justify-center rounded-full border-1 border-orange-apricot py-4 w-2/3 bg-white'><h1 className='text-gray-500 font-poppins font-bold'>{process.env.NEXT_PUBLIC_PIX_CODE}</h1></div>
 
-                            <button onClick={()=>copyToClipboard(process.env.NEXT_PUBLIC_PIX_CODE)} className='bg-orange-linear rounded-full py-4 px-7'>
+                            <button onClick={()=>copyToClipboard(process.env.NEXT_PUBLIC_PIX_CODE||"")} className='bg-orange-linear rounded-full py-4 px-7'>
 
                                 <h1 className='font-poppins font-bold text-white text-xl'>Copiar</h1>
                             

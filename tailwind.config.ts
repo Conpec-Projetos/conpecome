@@ -1,5 +1,3 @@
-import { colors } from "@mui/material"
-import { Pixelify_Sans } from "next/font/google"
 import type { Config } from "tailwindcss"
 
 const {nextui} = require('@nextui-org/react')

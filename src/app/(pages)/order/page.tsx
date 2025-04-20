@@ -2,7 +2,6 @@
 import EmblaCarousel from '@/components/ui/carousel/EmblaCarousel';
 import { EmblaOptionsType } from 'embla-carousel';
 import pictures  from '@/assets/pictures/pictures';
-import { getStock } from '@/assets/pictures/pictures';
 import "./embla.css";
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -23,16 +22,6 @@ export default function Order() {
     const [value, setValue] = useState("1");
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const router = useRouter();
-
-    useEffect(() => {
-        getStock();
-        toast.loading('Carregando estoque...');
-        setTimeout(() => {
-            setIsLoading(false);
-            toast.dismiss();
-            toast.success('Estoque carregado!');
-        }, 2000);
-    }, []);
 
     const [counters, setCounters] = useState<number[]>(Array(SLIDE_COUNT).fill(0));
 

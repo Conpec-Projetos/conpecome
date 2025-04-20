@@ -1,6 +1,4 @@
 "use client"
-import PIX_CODE from ".env";
-import pictures from '@/assets/pictures/pictures';
 import { Toaster, toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
@@ -23,8 +21,6 @@ export default function Log() {
     const router = useRouter();
 
     const saveInput = (email: string) => {
-
-        console.log("AAAAAA")
         toast.success('Marcha, bom ao mosso!')
         setTimeout(() => {
             router.push('/')
@@ -40,8 +36,7 @@ export default function Log() {
         resolver: zodResolver(schema),
     });
 
-    const onSubmit: SubmitHandler<FormFields> = async (data) => {
-        console.log("a")
+    const onSubmit: SubmitHandler<FormFields> = async (data: FormFields) => {
         try {
             saveInput(data.email)
         } catch (error) {

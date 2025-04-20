@@ -57,16 +57,14 @@ export default function LogAdmin() {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
             const user = {...userCredential.user, timeout: Date.now() + (1000 * 60 * 30)};
-            console.log(user);
             if (user) {
                 localStorage.setItem('user', JSON.stringify(user));
                 toast.success('Marcha!!!');
                 setTimeout(() => {
-                    router.push('/adm/products');
+                    router.push('/admin/products');
                 }, 2000);
             }
         } catch (error) {
-            console.log(data.email, data.password);
             toast.error('Eita, deu ruim!');
         }
       };
