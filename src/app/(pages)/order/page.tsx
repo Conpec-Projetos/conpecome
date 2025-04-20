@@ -22,8 +22,16 @@ export default function Order() {
     const [value, setValue] = useState("1");
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const router = useRouter();
-
     const [counters, setCounters] = useState<number[]>(Array(SLIDE_COUNT).fill(0));
+
+    useEffect(() => {
+        toast.loading('Carregando estoque...');
+        setTimeout(() => {
+            setIsLoading(false);
+            toast.dismiss();
+            toast.success('Estoque carregado!');
+        }, 2000);
+    }, []);
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
       setValue(newValue);
